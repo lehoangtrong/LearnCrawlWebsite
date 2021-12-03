@@ -1,10 +1,9 @@
-from time import sleep
 from bs4 import BeautifulSoup
+from re import findall
+from progressbar import progressbar
 
 import requests
-import re
 import xlsxwriter
-import progressbar
 
 path_db = open('./config.txt', 'r').read()
 
@@ -23,7 +22,7 @@ def login(user, passw, row_count):
     }
     s = requests.Session()
     r = s.get(url=login_url).text
-    token = re.findall(r'"\S{40}"', r)[0].strip('"')
+    token = findall(r'"\S{40}"', r)[0].strip('"')
     payload['_token'] = token
     payload['username'] = user
     payload['password'] = passw
@@ -74,15 +73,13 @@ contents = f.readlines()
 
 row_count = 2
 people = 0
-for i in progressbar.progressbar(range(0, len(contents), 2)):
+for i in progressbar(range(0, len(contents), 2)):
     result = login(contents[i].strip(), contents[i + 1].strip(), row_count)
     row_count += result
     people += result
 
 print(f'Finished crawled {people} people')
 print(f'There are {int(len(contents)/2) - people} wrong accounts')
-sleep(1)
 print("Good day!")
 f.close()
 workbook.close()
-sleep(2)
