@@ -4,8 +4,9 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import xlsxwriter
+import progressbar
 
-path_db = open('config.txt', 'r').read()
+path_db = open('./config.txt', 'r').read()
 
 workbook = xlsxwriter.Workbook('result.xlsx')
 worksheet = workbook.add_worksheet()
@@ -28,7 +29,6 @@ def login(user, passw, row_count):
     payload['password'] = passw
     response = s.post(url=login_url, data=payload).text
     if response.find("Đăng nhập") != -1:
-        print("\nInvaild username or password!\n")
         return 0
     page_source = s.get(url=url)
     page_source = BeautifulSoup(page_source.text, 'lxml')
@@ -72,17 +72,15 @@ for i in range(1, 5):
 f = open(path_db)
 contents = f.readlines()
 
-i = 0
 row_count = 2
 people = 0
-while i < len(contents):
-    print('Crawling username: ' + str(contents[i].strip()))
+for i in progressbar.progressbar(range(0, len(contents), 2)):
     result = login(contents[i].strip(), contents[i + 1].strip(), row_count)
     row_count += result
     people += result
-    i += 2
 
-print('Finished crawled ' + str(people) + ' people')
+print(f'Finished crawled {people} people')
+print(f'There are {int(len(contents)/2) - people} wrong accounts')
 sleep(1)
 print("Good day!")
 f.close()
