@@ -42,7 +42,7 @@ Mình chưa test thử trường hợp tên thư mục là tiếng Việt, có h
 - lxml 4.6.4
 - python-time 0.3.0
 - requests 2.26.0
-- progressbar2 3.55.0
+- progressbar2 3.55.0 
 
 ## Credit
 Coder siêu cấp: `lehoangtrong`  
