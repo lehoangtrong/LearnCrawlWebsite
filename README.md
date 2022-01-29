@@ -46,6 +46,4 @@ Mình chưa test thử trường hợp tên thư mục là tiếng Việt, có h
 
 ## Credit
 Coder siêu cấp: `lehoangtrong`  
-Tài liệu và refactor: `honguyeminh`  
-Chữa lỗi và sửa code: `vietng322611`  
 *Superman Squad*
