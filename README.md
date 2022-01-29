@@ -45,5 +45,5 @@ Mình chưa test thử trường hợp tên thư mục là tiếng Việt, có h
 - progressbar2 3.55.0
 
 ## Credit
-Coder siêu cấp: `lehoangtrong`  
+Coder Super Idol : `lehoangtrong` 😂
 *Superman Squad*
